@@ -18,6 +18,23 @@ class BikeItem extends StatefulWidget {
 
 class _BikeItemState extends State<BikeItem> {
   late final String bikeType;
+
+  @override
+  void initState() {
+    super.initState();
+    switch (widget.bike.category) {
+      case "XE_DAP_DON":
+        bikeType = "Xe đạp đơn";
+        break;
+      case "XE_DAP_DOI":
+        bikeType = "Xe đạp đôi";
+        break;
+      case "XE_DAP_DIEN":
+        bikeType = "Xe đạp điện";
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -31,7 +48,7 @@ class _BikeItemState extends State<BikeItem> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextHeader(
-                text: "Xe đạp đơn", fontSize: 28.sp, color: Colors.black),
+                text: "${bikeType}", fontSize: 28.sp, color: Colors.black),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +88,7 @@ class _BikeItemState extends State<BikeItem> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: "Xe đạp đơn",
+                          text: "${bikeType}",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20.sp,
@@ -108,21 +125,5 @@ class _BikeItemState extends State<BikeItem> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    switch (widget.bike.category) {
-      case "XE_DAP_DON":
-        bikeType = "Xe đạp đơn";
-        break;
-      case "XE_DAP_DOI":
-        bikeType = "Xe đạp đôi";
-        break;
-      case "XE_DAP_DIEN":
-        bikeType = "Xe đạp điện";
-        break;
-    }
   }
 }
