@@ -1,11 +1,12 @@
-import 'package:bike_rental/configs/colors.dart';
-import 'package:bike_rental/configs/images.dart';
-import 'package:bike_rental/data/models/parking.dart';
-import 'package:bike_rental/ui/screen/detail_parking_screen.dart';
-import 'package:bike_rental/ui/widgets/return_bike_parking_item.dart';
-import 'package:bike_rental/ui/widgets/text_header.dart';
+import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/utils/colors.dart';
+import 'package:bike_rental/utils/images.dart';
+import 'package:bike_rental/views/widgets/return_bike_parking_item.dart';
+import 'package:bike_rental/views/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'detail_parking_screen.dart';
 
 class ReturnBikeScreen extends StatefulWidget {
   const ReturnBikeScreen({Key? key}) : super(key: key);

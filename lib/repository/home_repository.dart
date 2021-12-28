@@ -1,5 +1,5 @@
-import 'package:bike_rental/data/models/parking.dart';
-import 'package:bike_rental/data/service/home_service.dart';
+import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/service/home_service.dart';
 
 class HomeRepository implements HomeService {
   final HomeService homeService;

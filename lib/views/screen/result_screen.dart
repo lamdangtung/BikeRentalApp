@@ -1,7 +1,7 @@
-import 'package:bike_rental/configs/colors.dart';
-import 'package:bike_rental/configs/images.dart';
-import 'package:bike_rental/ui/widgets/normal_button.dart';
-import 'package:bike_rental/ui/widgets/text_header.dart';
+import 'package:bike_rental/utils/colors.dart';
+import 'package:bike_rental/utils/images.dart';
+import 'package:bike_rental/views/widgets/normal_button.dart';
+import 'package:bike_rental/views/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

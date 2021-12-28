@@ -1,7 +1,7 @@
-import 'package:bike_rental/configs/colors.dart';
-import 'package:bike_rental/configs/images.dart';
-import 'package:bike_rental/ui/screen/result_screen.dart';
-import 'package:bike_rental/ui/widgets/normal_button.dart';
+import 'package:bike_rental/utils/colors.dart';
+import 'package:bike_rental/utils/images.dart';
+import 'package:bike_rental/views/screen/result_screen.dart';
+import 'package:bike_rental/views/widgets/normal_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,9 +17,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   var cardNumberTextEditingController = TextEditingController();
 
-  var secretNumberTextEditingController;
+  var secretNumberTextEditingController = TextEditingController();
 
-  var expiredDateTextEditingController;
+  var expiredDateTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,5 +1,5 @@
-import 'package:bike_rental/configs/images.dart';
-import 'package:bike_rental/data/models/parking.dart';
+import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bike_rental/data/models/parking.dart';
-import 'package:bike_rental/data/service/home_service.dart';
+import 'package:bike_rental/entity/parking.dart';
 import 'package:bike_rental/utils/api.dart';
 import 'package:http/http.dart' as http;
+
+import 'home_service.dart';
 
 class HomeRemoteService implements HomeService {
   @override

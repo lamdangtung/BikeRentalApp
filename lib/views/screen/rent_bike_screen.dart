@@ -1,23 +1,13 @@
-import 'package:bike_rental/configs/colors.dart';
-import 'package:bike_rental/configs/images.dart';
-import 'package:bike_rental/data/models/bike.dart';
-import 'package:bike_rental/ui/screen/payment_screen.dart';
-import 'package:bike_rental/ui/widgets/normal_button.dart';
-import 'package:bike_rental/ui/widgets/text_header.dart';
+import 'package:bike_rental/utils/colors.dart';
+import 'package:bike_rental/utils/images.dart';
+import 'package:bike_rental/views/screen/return_bike_screen.dart';
+import 'package:bike_rental/views/widgets/normal_button.dart';
+import 'package:bike_rental/views/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ConfirmRentBikeScreen extends StatefulWidget {
-  final Bike bike;
-  const ConfirmRentBikeScreen({Key? key, required this.bike}) : super(key: key);
-
-  @override
-  State<ConfirmRentBikeScreen> createState() => _ConfirmRentBikeScreenState();
-}
-
-class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
-  final TextEditingController searchTextEditingController =
-      TextEditingController();
+class RentBikeScreen extends StatelessWidget {
+  const RentBikeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +35,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                   Padding(
                     padding: EdgeInsets.only(left: 30.w),
                     child: Text(
-                      "Ecobike | Thuê xe",
+                      "Ecobike | Xe đang thuê",
                       style: TextStyle(
                         fontSize: 48.sp,
                         color: Color(0xFF05ff2e),
@@ -127,7 +117,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                               ),
                               RichText(
                                 text: TextSpan(
-                                    text: "Tên bãi xe: ",
+                                    text: "Biển số xe: ",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 30.sp,
@@ -135,7 +125,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "Bãi xe Hài Bà Trưng",
+                                        text: "ECO1234957472",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -147,6 +137,29 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                               SizedBox(
                                 height: 20.h,
                               ),
+                              // RichText(
+                              //   text: TextSpan(
+                              //       text: "Tên bãi xe: ",
+                              //       style: TextStyle(
+                              //         color: Colors.black,
+                              //         fontSize: 30.sp,
+                              //         fontWeight: FontWeight.bold,
+                              //       ),
+                              //       children: <TextSpan>[
+                              //         TextSpan(
+                              //           text: "Bãi xe Hài Bà Trưng",
+                              //           style: TextStyle(
+                              //             color: Colors.black,
+                              //             fontSize: 26.sp,
+                              //             fontWeight: FontWeight.normal,
+                              //           ),
+                              //         )
+                              //       ]),
+                              // ),
+                              // SizedBox(
+                              //   height: 20.h,
+                              // ),
+
                               RichText(
                                 text: TextSpan(
                                     text: "Lượng pin: ",
@@ -185,7 +198,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "Không",
+                                        text: "1 giờ",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -199,29 +212,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                               ),
                               RichText(
                                 text: TextSpan(
-                                    text: "Biển số xe: ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 30.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: "99 - XD 88888",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 26.sp,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      )
-                                    ]),
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                    text: "Đặt cọc: ",
+                                    text: "Đã đặt cọc: ",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 30.sp,
@@ -245,7 +236,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Giá thuê: ",
+                                    "Số tiền thuê: ",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 30.sp,
@@ -253,7 +244,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                   ),
                                   Text(
-                                    "< 10 phút: Miễn phí\n30 phút đầu: 15.000 VND\n15 phút tiếp ( lũy tiến): 3.000 VND",
+                                    "70.000",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 26.sp,
@@ -271,12 +262,12 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                       padding: EdgeInsets.only(top: 50.h),
                       width: 270.w,
                       child: NormalButton(
-                        text: "Thuê xe",
+                        text: "Trả xe",
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PaymentScreen()));
+                                  builder: (context) => ReturnBikeScreen()));
                         },
                         color: Colors.green,
                         fontSize: 30.sp,

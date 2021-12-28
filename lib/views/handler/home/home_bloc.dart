@@ -1,8 +1,12 @@
-import 'package:bike_rental/data/repository/home_repository.dart';
-import 'package:bloc/bloc.dart';
+import 'dart:async';
 
-import 'home_event.dart';
-import 'home_state.dart';
+import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/repository/home_repository.dart';
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+
+part 'home_event.dart';
+part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository homeRepository;
@@ -20,7 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetAllParkingEvent event) async* {
     yield ParkingLoadingState();
     try {
-      final res = await homeRepository.getAllParking();
+      final List<Parking>? res = await homeRepository.getAllParking();
       if (res != null) {
         yield ParkingLoadedState(res);
       } else {

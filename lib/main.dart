@@ -1,13 +1,13 @@
-import 'package:bike_rental/controller/home/home_bloc.dart';
-import 'package:bike_rental/data/repository/home_repository.dart';
-import 'package:bike_rental/ui/screen/home_screen.dart';
+import 'package:bike_rental/views/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'data/service/home_remote_service.dart';
+import 'repository/home_repository.dart';
+import 'service/home_remote_service.dart';
+import 'views/handler/home/home_bloc.dart';
 
-void main() {
+Future<void> main() async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (context) =>
@@ -23,7 +23,7 @@ class BikeRentalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(1336, 768),
+      designSize: const Size(1336, 768),
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Bike Rental App',
@@ -32,7 +32,7 @@ class BikeRentalApp extends StatelessWidget {
         ),
         home: const HomeScreen(),
         routes: <String, WidgetBuilder>{
-          "/home": (context) => HomeScreen(),
+          "/home": (context) => const HomeScreen(),
         },
       ),
     );

@@ -1,7 +1,7 @@
-import 'package:bike_rental/data/models/parking.dart';
-import 'package:bike_rental/ui/screen/payment_screen.dart';
-import 'package:bike_rental/ui/widgets/normal_button.dart';
-import 'package:bike_rental/ui/widgets/text_header.dart';
+import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/views/screen/payment_screen.dart';
+import 'package:bike_rental/views/widgets/normal_button.dart';
+import 'package:bike_rental/views/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

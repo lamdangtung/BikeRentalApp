@@ -1,5 +1,4 @@
-import 'package:bike_rental/data/models/parking.dart';
-import 'package:equatable/equatable.dart';
+part of 'home_bloc.dart';
 
 abstract class HomeState extends Equatable {
   const HomeState();
@@ -14,7 +13,7 @@ class ParkingLoadingState extends HomeState {}
 class ParkingLoadedState extends HomeState {
   final List<Parking> listParking;
 
-  ParkingLoadedState(this.listParking);
+  const ParkingLoadedState(this.listParking);
 }
 
 class ParkingFailState extends HomeState {}
