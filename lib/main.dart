@@ -1,9 +1,19 @@
+import 'package:bike_rental/controller/home/home_bloc.dart';
+import 'package:bike_rental/data/repository/home_repository.dart';
 import 'package:bike_rental/ui/screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'data/service/home_remote_service.dart';
+
 void main() {
-  runApp(const BikeRentalApp());
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(
+      create: (context) =>
+          HomeBloc(HomeRepository(homeService: HomeRemoteService())),
+    ),
+  ], child: const BikeRentalApp()));
 }
 
 class BikeRentalApp extends StatelessWidget {

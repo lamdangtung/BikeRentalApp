@@ -1,21 +1,24 @@
-import 'package:bike_rental/models/parking.dart';
+import 'package:bike_rental/data/models/parking.dart';
+import 'package:bike_rental/ui/screen/payment_screen.dart';
+import 'package:bike_rental/ui/widgets/normal_button.dart';
+import 'package:bike_rental/ui/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ParkingItem extends StatefulWidget {
+class ReturnParkingItem extends StatefulWidget {
   final Parking parking;
   final GestureTapCallback onTap;
-  const ParkingItem({
+  const ReturnParkingItem({
     Key? key,
     required this.parking,
     required this.onTap,
   }) : super(key: key);
 
   @override
-  State<ParkingItem> createState() => _ParkingItemState();
+  State<ReturnParkingItem> createState() => _ReturnParkingItemState();
 }
 
-class _ParkingItemState extends State<ParkingItem> {
+class _ReturnParkingItemState extends State<ReturnParkingItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -48,6 +51,9 @@ class _ParkingItemState extends State<ParkingItem> {
                 fontWeight: FontWeight.normal,
               ),
             ),
+            SizedBox(
+              height: 20.h,
+            ),
             Padding(
               padding: EdgeInsets.only(left: 30.w),
               child: Row(
@@ -59,64 +65,92 @@ class _ParkingItemState extends State<ParkingItem> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      RichText(
-                        text: TextSpan(
-                            text: "Xe đạp đơn:  ",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: "${widget.parking.singleBike}",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              )
-                            ]),
+                      TextHeader(
+                          text: "Vị trí trống",
+                          fontSize: 24.sp,
+                          color: Colors.black),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10.w),
+                        child: RichText(
+                          text: TextSpan(
+                              text: "Xe đạp đơn:  ",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: "${widget.parking.emptySingle}",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                )
+                              ]),
+                        ),
                       ),
-                      RichText(
-                        text: TextSpan(
-                            text: "Xe đạp đôi:  ",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: "${widget.parking.coupleBike}",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              )
-                            ]),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10.w),
+                        child: RichText(
+                          text: TextSpan(
+                              text: "Xe đạp đôi:  ",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: "${widget.parking.emptyCouple}",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                )
+                              ]),
+                        ),
                       ),
-                      RichText(
-                        text: TextSpan(
-                            text: "Xe đạp điện:  ",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: "${widget.parking.electricBike}",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              )
-                            ]),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10.w),
+                        child: RichText(
+                          text: TextSpan(
+                              text: "Xe đạp điện:  ",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: "${widget.parking.emptyElectric}",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                )
+                              ]),
+                        ),
                       )
                     ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.h, left: 20.w),
+                    child: NormalButton(
+                      height: 35.h,
+                      text: "Xác nhận trả xe",
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PaymentScreen()));
+                      },
+                      fontSize: 18.sp,
+                      color: Colors.green,
+                    ),
                   )
                 ],
               ),

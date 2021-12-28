@@ -1,4 +1,4 @@
-import 'package:bike_rental/models/bike.dart';
+import 'package:bike_rental/data/models/bike.dart';
 import 'package:bike_rental/ui/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -38,7 +38,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   Padding(
                     padding: EdgeInsets.only(left: 50.w),
                     child: Image.asset(
-                      AppImages.img_logo,
+                      AppImages.imgLogo,
                       width: 100.w,
                       height: 100.h,
                     ),

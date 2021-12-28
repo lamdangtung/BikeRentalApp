@@ -1,5 +1,5 @@
 import 'package:bike_rental/configs/images.dart';
-import 'package:bike_rental/models/parking.dart';
+import 'package:bike_rental/data/models/parking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -54,7 +54,7 @@ class _ParkingItemState extends State<ParkingItem> {
               child: Row(
                 children: [
                   Image.asset(
-                    AppImages.img_logo,
+                    AppImages.imgLogo,
                     width: 100.w,
                     height: 100.h,
                   ),
@@ -75,7 +75,7 @@ class _ParkingItemState extends State<ParkingItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: "${widget.parking.singleBike}",
+                                text: "${widget.parking.numSingle}",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20.sp,
@@ -94,7 +94,7 @@ class _ParkingItemState extends State<ParkingItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: "${widget.parking.coupleBike}",
+                                text: "${widget.parking.numCouple}",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20.sp,
@@ -113,7 +113,7 @@ class _ParkingItemState extends State<ParkingItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: "${widget.parking.electricBike}",
+                                text: "${widget.parking.numElectric}",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20.sp,

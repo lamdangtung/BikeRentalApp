@@ -1,7 +1,7 @@
 import 'package:bike_rental/configs/colors.dart';
 import 'package:bike_rental/configs/images.dart';
-import 'package:bike_rental/models/bike.dart';
-import 'package:bike_rental/models/parking.dart';
+import 'package:bike_rental/data/models/bike.dart';
+import 'package:bike_rental/data/models/parking.dart';
 import 'package:bike_rental/ui/screen/confirm_rent_bike_screen.dart';
 import 'package:bike_rental/ui/widgets/bike_item.dart';
 import 'package:bike_rental/ui/widgets/normal_button.dart';
@@ -21,48 +21,7 @@ class DetailParkingScreen extends StatefulWidget {
 class _DetailParkingScreenState extends State<DetailParkingScreen> {
   final TextEditingController searchTextEditingController =
       TextEditingController();
-  List<Bike> listBike = [
-    Bike(
-      id: 0,
-      barcode: "ECO1034957472",
-      category: "XE_DAP_DON",
-    ),
-    Bike(
-      id: 0,
-      barcode: "ECO1034957472",
-      category: "XE_DAP_DON",
-    ),
-    Bike(
-      id: 0,
-      barcode: "ECO1034957472",
-      category: "XE_DAP_DON",
-    ),
-    Bike(
-      id: 0,
-      barcode: "ECO1034957472",
-      category: "XE_DAP_DON",
-    ),
-    Bike(
-      id: 0,
-      barcode: "ECO1034957472",
-      category: "XE_DAP_DON",
-    ),
-    Bike(
-      id: 0,
-      barcode: "ECO1034957472",
-      category: "XE_DAP_DON",
-    ),
-    Bike(
-      id: 0,
-      barcode: "ECO1034957472",
-      category: "XE_DAP_DON",
-    ),
-    Bike(
-      id: 0,
-      barcode: "ECO1034957472",
-      category: "XE_DAP_DON",
-    )
-  ];
+  List<Bike> listBike = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +40,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                   Padding(
                     padding: EdgeInsets.only(left: 50.w),
                     child: Image.asset(
-                      AppImages.img_logo,
+                      AppImages.imgLogo,
                       width: 100.w,
                       height: 100.h,
                     ),
@@ -236,7 +195,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text:
-                                                  "${widget.parking.singleBike}",
+                                                  "${widget.parking.numSingle}",
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.sp,
@@ -259,7 +218,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text:
-                                                  "${widget.parking.coupleBike}",
+                                                  "${widget.parking.numCouple}",
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.sp,
@@ -282,7 +241,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text:
-                                                  "${widget.parking.electricBike}",
+                                                  "${widget.parking.numElectric}",
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.sp,
@@ -321,7 +280,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text:
-                                                  "${widget.parking.singleBike}",
+                                                  "${widget.parking.emptySingle}",
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.sp,
@@ -344,7 +303,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text:
-                                                  "${widget.parking.coupleBike}",
+                                                  "${widget.parking.emptyCouple}",
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.sp,
@@ -367,7 +326,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text:
-                                                  "${widget.parking.electricBike}",
+                                                  "${widget.parking.emptyElectric}",
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.sp,

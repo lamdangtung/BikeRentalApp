@@ -6,20 +6,22 @@ class NormalButton extends StatelessWidget {
   final GestureTapCallback onTap;
   Color? color;
   double? fontSize;
-  NormalButton({
-    Key? key,
-    required this.text,
-    required this.onTap,
-    this.color,
-    this.fontSize,
-  }) : super(key: key);
+  double? height;
+  NormalButton(
+      {Key? key,
+      required this.text,
+      required this.onTap,
+      this.color,
+      this.fontSize,
+      this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 50.h,
+        height: height ?? 50.h,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: color ?? Color(0xFF05ff2e),

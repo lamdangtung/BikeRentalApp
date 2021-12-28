@@ -1,8 +1,8 @@
 import 'package:bike_rental/configs/colors.dart';
 import 'package:bike_rental/configs/images.dart';
-import 'package:bike_rental/models/parking.dart';
+import 'package:bike_rental/data/models/parking.dart';
 import 'package:bike_rental/ui/screen/detail_parking_screen.dart';
-import 'package:bike_rental/ui/widgets/parking_item.dart';
+import 'package:bike_rental/ui/widgets/return_bike_parking_item.dart';
 import 'package:bike_rental/ui/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,96 +17,7 @@ class ReturnBikeScreen extends StatefulWidget {
 class _ReturnBikeScreenState extends State<ReturnBikeScreen> {
   final TextEditingController searchTextEditingController =
       TextEditingController();
-  List<Parking> parkingList = [
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-    Parking(
-        id: 1,
-        name: "Bãi xe Hai Bà Trưng",
-        address: "35 Trần Đại Nghĩa, Hà Nội",
-        area: 20,
-        singleBike: 10,
-        coupleBike: 5,
-        electricBike: 6),
-  ];
+  List<Parking> parkingList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +35,7 @@ class _ReturnBikeScreenState extends State<ReturnBikeScreen> {
                   Padding(
                     padding: EdgeInsets.only(left: 50.w),
                     child: Image.asset(
-                      AppImages.img_logo,
+                      AppImages.imgLogo,
                       width: 100.w,
                       height: 100.h,
                     ),
@@ -177,7 +88,7 @@ class _ReturnBikeScreenState extends State<ReturnBikeScreen> {
                   Padding(
                     padding: EdgeInsets.only(right: 50.w),
                     child: Image.asset(
-                      AppImages.img_rent_bike,
+                      AppImages.imgRentBike,
                       width: 60.w,
                       height: 60.h,
                     ),
@@ -198,7 +109,7 @@ class _ReturnBikeScreenState extends State<ReturnBikeScreen> {
                     mainAxisSpacing: 10.h,
                   ),
                   itemBuilder: (_, i) {
-                    return ParkingItem(
+                    return ReturnParkingItem(
                         onTap: () {
                           // Navigator.pushNamed(context, "/detail_parking");
                           Navigator.push(
