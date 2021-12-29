@@ -17,22 +17,9 @@ class BikeItem extends StatefulWidget {
 }
 
 class _BikeItemState extends State<BikeItem> {
-  late final String bikeType;
-
   @override
   void initState() {
     super.initState();
-    switch (widget.bike.category) {
-      case "XE_DAP_DON":
-        bikeType = "Xe đạp đơn";
-        break;
-      case "XE_DAP_DOI":
-        bikeType = "Xe đạp đôi";
-        break;
-      case "XE_DAP_DIEN":
-        bikeType = "Xe đạp điện";
-        break;
-    }
   }
 
   @override
@@ -48,7 +35,9 @@ class _BikeItemState extends State<BikeItem> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextHeader(
-                text: "${bikeType}", fontSize: 28.sp, color: Colors.black),
+                text: "${Bike.getBikeType(widget.bike.category)}",
+                fontSize: 28.sp,
+                color: Colors.black),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +55,7 @@ class _BikeItemState extends State<BikeItem> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: "${widget.bike.barcode}",
+                          text: widget.bike.barcode,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20.sp,
@@ -88,7 +77,7 @@ class _BikeItemState extends State<BikeItem> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: "${bikeType}",
+                          text: Bike.getBikeType(widget.bike.category),
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20.sp,
@@ -110,7 +99,7 @@ class _BikeItemState extends State<BikeItem> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: "Không",
+                          text: widget.bike.battery ?? "Không",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20.sp,

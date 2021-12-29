@@ -32,6 +32,7 @@ class Parking {
   String emptySingle;
   String emptyCouple;
   String emptyElectric;
+  static List<Parking> listParking = [];
 
   factory Parking.fromJson(Map<String, dynamic> json) => Parking(
         id: json["id"],
@@ -58,4 +59,15 @@ class Parking {
         "empty_couple": emptyCouple,
         "empty_electric": emptyElectric,
       };
+
+  static String getParkingName(String parkingId) {
+    String parkingName = "";
+    listParking.forEach((element) {
+      if (element.id == parkingId) {
+        parkingName = element.name;
+      }
+      ;
+    });
+    return parkingName;
+  }
 }

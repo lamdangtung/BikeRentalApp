@@ -1,4 +1,5 @@
 import 'package:bike_rental/entity/bike/bike.dart';
+import 'package:bike_rental/entity/parking.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
 import 'package:bike_rental/views/screen/payment_screen.dart';
@@ -18,6 +19,11 @@ class ConfirmRentBikeScreen extends StatefulWidget {
 class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
   final TextEditingController searchTextEditingController =
       TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +54,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                       "Ecobike | Thuê xe",
                       style: TextStyle(
                         fontSize: 48.sp,
-                        color: Color(0xFF05ff2e),
+                        color: const Color(0xFF05ff2e),
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.normal,
                       ),
@@ -91,7 +97,8 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "Xe đạp đơn",
+                                        text: Bike.getBikeType(
+                                            widget.bike.category),
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -113,7 +120,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "ECO1234957472",
+                                        text: widget.bike.barcode,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -135,7 +142,8 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "Bãi xe Hài Bà Trưng",
+                                        text: Parking.getParkingName(
+                                            widget.bike.parkingId),
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -157,7 +165,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "Không",
+                                        text: widget.bike.battery ?? "Không",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -177,28 +185,6 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                               ),
                               RichText(
                                 text: TextSpan(
-                                    text: "Thời gian: ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 30.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: "Không",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 26.sp,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      )
-                                    ]),
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              RichText(
-                                text: TextSpan(
                                     text: "Biển số xe: ",
                                     style: TextStyle(
                                       color: Colors.black,
@@ -207,7 +193,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "99 - XD 88888",
+                                        text: widget.bike.licenseplate,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -229,7 +215,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: "400.000",
+                                        text: widget.bike.deposite,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -253,7 +239,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                   ),
                                   Text(
-                                    "< 10 phút: Miễn phí\n30 phút đầu: 15.000 VND\n15 phút tiếp ( lũy tiến): 3.000 VND",
+                                    "< 10 phút: Miễn phí\n30 phút đầu: 15.000 VND\n15 phút tiếp ( lũy tiến): ${widget.bike.rentalPrice}.000 VND",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 26.sp,
@@ -276,7 +262,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PaymentScreen()));
+                                  builder: (context) => const PaymentScreen()));
                         },
                         color: Colors.green,
                         fontSize: 30.sp,

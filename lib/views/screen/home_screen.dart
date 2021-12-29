@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (state is ParkingLoadedState) {
           print("ParkingLoadedState");
           parkingList = state.listParking;
+          Parking.listParking = parkingList;
         } else if (state is ParkingFailState) {
           print("ParkingErrorState");
         }

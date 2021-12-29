@@ -18,6 +18,7 @@ class Bike {
     required this.licenseplate,
     required this.parkingId,
     required this.rentalPrice,
+    required this.battery,
   });
 
   String id;
@@ -28,7 +29,7 @@ class Bike {
   String licenseplate;
   String parkingId;
   String rentalPrice;
-
+  String? battery;
   factory Bike.fromJson(Map<String, dynamic> json) => Bike(
         id: json["id"],
         category: json["category"],
@@ -38,6 +39,7 @@ class Bike {
         licenseplate: json["licenseplate"],
         parkingId: json["parkingId"],
         rentalPrice: json["rentalPrice"],
+        battery: json["battery"] ?? "Không",
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,5 +51,21 @@ class Bike {
         "licenseplate": licenseplate,
         "parkingId": parkingId,
         "rentalPrice": rentalPrice,
+        "battery": battery,
       };
+
+  static String getBikeType(String category) {
+    switch (category) {
+      case "XE_DAP_DON":
+        return "Xe đạp đơn";
+        break;
+      case "XE_DAP_DOI":
+        return "Xe đạp đôi";
+        break;
+      case "XE_DAP_DIEN":
+        return "Xe đạp điện";
+      default:
+        return "";
+    }
+  }
 }

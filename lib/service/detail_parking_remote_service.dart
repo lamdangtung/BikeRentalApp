@@ -15,7 +15,6 @@ class DetailParkingRemoteService implements DetailParkingService {
     final res = await http.get(
       Uri.parse(url),
     );
-    print(res.body.toString());
     if (res.statusCode == HttpStatus.ok) {
       Iterable data = jsonDecode(res.body)["data"];
 

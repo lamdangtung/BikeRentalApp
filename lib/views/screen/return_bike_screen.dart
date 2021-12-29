@@ -18,7 +18,7 @@ class ReturnBikeScreen extends StatefulWidget {
 class _ReturnBikeScreenState extends State<ReturnBikeScreen> {
   final TextEditingController searchTextEditingController =
       TextEditingController();
-  List<Parking> parkingList = [];
+  List<Parking> parkingList = Parking.listParking;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,54 +44,9 @@ class _ReturnBikeScreenState extends State<ReturnBikeScreen> {
                   Padding(
                     padding: EdgeInsets.only(left: 30.w),
                     child: TextHeader(
-                      text: "Ecobike",
+                      text: "Ecobike | Trả xe",
                       color: AppColors.pGreen,
                       fontSize: 48.sp,
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    margin: EdgeInsets.only(left: 50.w, right: 20.w),
-                    height: 50.h,
-                    width: 500.w,
-                    child: TextFormField(
-                      controller: searchTextEditingController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 50.w,
-                  ),
-                  Container(
-                    height: 50.h,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF05ff2e),
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(8.w),
-                      child: Text(
-                        "Tìm kiếm bãi xe",
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontSize: 24.sp,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(right: 50.w),
-                    child: Image.asset(
-                      AppImages.imgRentBike,
-                      width: 60.w,
-                      height: 60.h,
                     ),
                   ),
                 ],
