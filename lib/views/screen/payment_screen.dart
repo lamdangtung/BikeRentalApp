@@ -1,13 +1,12 @@
 import 'package:bike_rental/entity/payment/credit_card.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
-import 'package:bike_rental/views/handler/payment/payment_bloc.dart';
+import 'package:bike_rental/views/handler/payment/payment_controller.dart';
 import 'package:bike_rental/views/screen/result_screen.dart';
 import 'package:bike_rental/views/widgets/normal_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
@@ -45,11 +44,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return BlocConsumer<PaymentBloc, PaymentState>(
       listener: (context, state) {
         if (state is PaymentLoading) {
-          print("PaymentLoading");
         } else if (state is PaymentSuccess) {
-          print("PaymentSuccess");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ResultScreen(
+                        message: "Thành công",
+                      )));
         } else if (state is PaymentFail) {
-          print("PaymentFail");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ResultScreen(
+                        message: "Thất bại",
+                      )));
         }
       },
       builder: (context, state) {
@@ -80,7 +88,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           "Ecobike | Thanh toán",
                           style: TextStyle(
                             fontSize: 48.sp,
-                            color: Color(0xFF05ff2e),
+                            color: const Color(0xFF05ff2e),
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.normal,
                           ),
@@ -276,29 +284,22 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             child: NormalButton(
                               text: "Xác nhận thanh toán",
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ResultScreen()));
-                                BlocProvider.of<PaymentBloc>(context).add(
-                                    PayOrderEvent(
-                                        CreditCard(
-                                            cardCode:
-                                                cardNumberTextEditingController
-                                                    .text,
-                                            cvvCode:
-                                                secretNumberTextEditingController
-                                                    .text,
-                                            dateExpired:
-                                                expiredDateTextEditingController
-                                                    .text,
-                                            owner: ownerTextEditingController
-                                                .text),
-                                        "pay",
-                                        100,
-                                        DateFormat("yyyy-MM-dd H:m:s")
-                                            .format(DateTime.now())
-                                            .toString()));
+                                CreditCard card = CreditCard(
+                                    cardCode:
+                                        cardNumberTextEditingController.text,
+                                    cvvCode:
+                                        secretNumberTextEditingController.text,
+                                    dateExpired:
+                                        expiredDateTextEditingController.text,
+                                    owner: ownerTextEditingController.text);
+                                if (card.checkCreditCardFormat()) {
+                                  BlocProvider.of<PaymentBloc>(context)
+                                      .add(PayOrderEvent(
+                                    creditCard: card,
+                                    contents: "rent bike",
+                                    amount: 100,
+                                  ));
+                                }
                               },
                               fontSize: 30.sp,
                               color: Colors.green,

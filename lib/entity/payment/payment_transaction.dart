@@ -7,9 +7,6 @@ import 'dart:convert';
 PaymentTransaction paymentTransactionFromJson(String str) =>
     PaymentTransaction.fromJson(json.decode(str));
 
-String paymentTransactionToJson(PaymentTransaction data) =>
-    json.encode(data.toJson());
-
 class PaymentTransaction {
   PaymentTransaction({
     required this.cardCode,
@@ -30,7 +27,7 @@ class PaymentTransaction {
   String command;
   String transactionContent;
   String amount;
-  DateTime createdAt;
+  String createdAt;
   String transactionId;
 
   factory PaymentTransaction.fromJson(Map<String, dynamic> json) =>
@@ -42,19 +39,7 @@ class PaymentTransaction {
         command: json["command"],
         transactionContent: json["transactionContent"],
         amount: json["amount"],
-        createdAt: DateTime.parse(json["createdAt"]),
+        createdAt: json["createdAt"],
         transactionId: json["transactionId"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "cardCode": cardCode,
-        "owner": owner,
-        "cvvCode": cvvCode,
-        "dateExpired": dateExpired,
-        "command": command,
-        "transactionContent": transactionContent,
-        "amount": amount,
-        "createdAt": createdAt.toIso8601String(),
-        "transactionId": transactionId,
-      };
 }

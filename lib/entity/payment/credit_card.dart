@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final creditCard = creditCardFromJson(jsonString);
-
 import 'dart:convert';
 
 CreditCard creditCardFromJson(String str) =>
@@ -29,10 +25,19 @@ class CreditCard {
         dateExpired: json["dateExpired"],
       );
 
+  @override
+  String toString() {
+    return 'CreditCard{cardCode: $cardCode, owner: $owner, cvvCode: $cvvCode, dateExpired: $dateExpired}';
+  }
+
   Map<String, dynamic> toJson() => {
         "cardCode": cardCode,
         "owner": owner,
         "cvvCode": cvvCode,
         "dateExpired": dateExpired,
       };
+
+  bool checkCreditCardFormat() {
+    return true;
+  }
 }

@@ -16,7 +16,9 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
       yield PaymentLoading();
       try {
         final res = await paymentRepository.payOrder(
-            event.creditCard, event.command, event.amount, event.createdAt);
+            card: event.creditCard,
+            contents: event.contents,
+            amount: event.amount);
         if (res != null) {
           yield PaymentSuccess();
         } else {

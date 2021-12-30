@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final bike = bikeFromJson(jsonString);
-
 import 'dart:convert';
 
 Bike bikeFromJson(String str) => Bike.fromJson(json.decode(str));
@@ -58,14 +54,16 @@ class Bike {
     switch (category) {
       case "XE_DAP_DON":
         return "Xe đạp đơn";
-        break;
       case "XE_DAP_DOI":
         return "Xe đạp đôi";
-        break;
       case "XE_DAP_DIEN":
         return "Xe đạp điện";
       default:
         return "";
     }
+  }
+
+  bool checkAvailabilityBarcode() {
+    return true;
   }
 }

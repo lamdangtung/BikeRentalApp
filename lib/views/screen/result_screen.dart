@@ -5,9 +5,15 @@ import 'package:bike_rental/views/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ResultScreen extends StatelessWidget {
-  const ResultScreen({Key? key}) : super(key: key);
+class ResultScreen extends StatefulWidget {
+  final String message;
+  const ResultScreen({Key? key, required this.message}) : super(key: key);
 
+  @override
+  State<ResultScreen> createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +63,7 @@ class ResultScreen extends StatelessWidget {
               height: 150.h,
             ),
             Text(
-              "Tin nhắn",
+              widget.message,
               style: TextStyle(
                 fontSize: 30.sp,
                 color: Colors.black,

@@ -7,6 +7,7 @@ class InterbankService {
     try {
       final res = await http.patch(
         Uri.parse(url),
+        headers: {"Content-Type": "application/json"},
         body: jsonDecode(data),
       );
       return res;

@@ -1,16 +1,22 @@
 import 'package:bike_rental/entity/payment/credit_card.dart';
 import 'package:bike_rental/entity/payment/payment_transaction.dart';
-import 'package:bike_rental/service/payment_service.dart';
+import 'package:bike_rental/subsystem/interbank_interface.dart';
+import 'package:bike_rental/subsystem/interbank_subsystem.dart';
 
-class PaymentRepository implements PaymentService {
-  final PaymentService paymentRemoteService;
+class PaymentRepository implements InterbankInterface {
+  final InterbankSubsystem interbankSubsystem = InterbankSubsystem();
 
-  PaymentRepository(this.paymentRemoteService);
+  PaymentRepository();
 
   @override
   Future<PaymentTransaction?> payOrder(
-      CreditCard creditCard, String command, int amount, String createdAt) {
-    return paymentRemoteService.payOrder(
-        creditCard, command, amount, createdAt);
+      {required CreditCard card,
+      required int amount,
+      required String contents}) async {
+    return await interbankSubsystem.payOrder(
+      amount: amount,
+      card: card,
+      contents: contents,
+    );
   }
 }

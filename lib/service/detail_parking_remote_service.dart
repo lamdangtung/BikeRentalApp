@@ -11,7 +11,7 @@ class DetailParkingRemoteService implements DetailParkingService {
   Future<List<Bike>?> getAllBikeByParkingId(String parkingId) async {
     final String url = API.baseUrl +
         API.bikeRoute +
-        "all_bike_by_parking_id.php?parkingId=${parkingId}";
+        "all_bike_by_parking_id.php?parkingId=$parkingId";
     final res = await http.get(
       Uri.parse(url),
     );

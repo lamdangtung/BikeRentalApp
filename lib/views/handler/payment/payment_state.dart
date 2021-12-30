@@ -1,4 +1,4 @@
-part of 'payment_bloc.dart';
+part of 'payment_controller.dart';
 
 abstract class PaymentState extends Equatable {
   const PaymentState();

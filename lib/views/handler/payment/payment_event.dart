@@ -1,4 +1,4 @@
-part of 'payment_bloc.dart';
+part of 'payment_controller.dart';
 
 abstract class PaymentEvent extends Equatable {
   const PaymentEvent();
@@ -9,9 +9,9 @@ abstract class PaymentEvent extends Equatable {
 
 class PayOrderEvent extends PaymentEvent {
   CreditCard creditCard;
-  String command;
   int amount;
-  String createdAt;
+  String contents;
 
-  PayOrderEvent(this.creditCard, this.command, this.amount, this.createdAt);
+  PayOrderEvent(
+      {required this.creditCard, required this.amount, required this.contents});
 }

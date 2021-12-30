@@ -34,13 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state is ParkingLoadingState) {
-          print("ParkingLoadingState");
+          // print("ParkingLoadingState");
         } else if (state is ParkingLoadedState) {
-          print("ParkingLoadedState");
+          // print("ParkingLoadedState");
           parkingList = state.listParking;
           Parking.listParking = parkingList;
         } else if (state is ParkingFailState) {
-          print("ParkingErrorState");
+          // print("ParkingErrorState");
         }
       },
       builder: (context, state) {

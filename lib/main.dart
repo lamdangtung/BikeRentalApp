@@ -1,9 +1,8 @@
 import 'package:bike_rental/repository/detail_parking_repository.dart';
 import 'package:bike_rental/repository/payment_repository.dart';
 import 'package:bike_rental/service/detail_parking_remote_service.dart';
-import 'package:bike_rental/service/payment_remote_service.dart';
 import 'package:bike_rental/views/handler/detail_parking/detail_parking_bloc.dart';
-import 'package:bike_rental/views/handler/payment/payment_bloc.dart';
+import 'package:bike_rental/views/handler/payment/payment_controller.dart';
 import 'package:bike_rental/views/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +22,7 @@ Future<void> main() async {
         create: (context) => DetailParkingBloc(
             detailParkingRepository: DetailParkingRepository(
                 detailParkingRemoteService: DetailParkingRemoteService()))),
-    BlocProvider(
-        create: (context) =>
-            PaymentBloc(PaymentRepository(PaymentRemoteService()))),
+    BlocProvider(create: (context) => PaymentBloc(PaymentRepository())),
   ], child: const BikeRentalApp()));
 }
 
