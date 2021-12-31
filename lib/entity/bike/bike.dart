@@ -66,4 +66,17 @@ class Bike {
   bool checkAvailabilityBarcode() {
     return true;
   }
+
+  int caculateRentalAmount(int time) {
+    if (time <= 10) {
+      return 0;
+    } else if (time > 10 && time <= 30) {
+      return 15;
+    } else {
+      int rentPrice = int.parse(rentalPrice);
+      double temp = 0;
+      temp = 15 + rentPrice * (time - 30) / 15;
+      return temp.toInt();
+    }
+  }
 }

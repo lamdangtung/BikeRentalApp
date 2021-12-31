@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/repository/home_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';

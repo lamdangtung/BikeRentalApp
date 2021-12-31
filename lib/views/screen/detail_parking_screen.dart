@@ -1,11 +1,10 @@
 import 'package:bike_rental/entity/bike/bike.dart';
-import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
 import 'package:bike_rental/views/handler/detail_parking/detail_parking_bloc.dart';
 import 'package:bike_rental/views/screen/confirm_rent_bike_screen.dart';
 import 'package:bike_rental/views/widgets/bike_item.dart';
-import 'package:bike_rental/views/widgets/normal_button.dart';
 import 'package:bike_rental/views/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +20,7 @@ class DetailParkingScreen extends StatefulWidget {
 }
 
 class _DetailParkingScreenState extends State<DetailParkingScreen> {
-  final TextEditingController searchTextEditingController =
+  final TextEditingController barCodeTextEditingController =
       TextEditingController();
   List<Bike> listBike = [];
 
@@ -37,12 +36,12 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
     return BlocConsumer<DetailParkingBloc, DetailParkingState>(
       listener: (context, state) {
         if (state is BikeLoadingState) {
-          // print("BikeLoadingState");
+          print("BikeLoadingState");
         } else if (state is BikeLoadedState) {
-          // print("BikeLoadedState");
+          print("BikeLoadedState");
           listBike = state.listBike;
         } else if (state is BikeFailState) {
-          // print("BikeFailState");
+          print("BikeFailState");
         }
       },
       builder: (context, state) {
@@ -78,29 +77,6 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      margin: EdgeInsets.only(left: 50.w, right: 20.w),
-                      height: 50.h,
-                      width: 500.w,
-                      child: TextFormField(
-                        controller: searchTextEditingController,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 50.w,
-                    ),
-                    NormalButton(
-                      text: 'Thuê xe',
-                      onTap: () {},
-                    ),
-                    Spacer(),
                   ],
                 ),
               ),
@@ -140,7 +116,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                       ),
                                       children: <TextSpan>[
                                         TextSpan(
-                                          text: "${widget.parking.name}",
+                                          text: widget.parking.name,
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 20.sp,
@@ -162,7 +138,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                       ),
                                       children: <TextSpan>[
                                         TextSpan(
-                                          text: "${widget.parking.address}",
+                                          text: widget.parking.address,
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 20.sp,
@@ -197,7 +173,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                   height: 10.h,
                                 ),
                                 TextHeader(
-                                    text: "Xe đang có:",
+                                    text: "Sức chứa:",
                                     fontSize: 24.sp,
                                     color: Colors.black),
                                 SizedBox(
@@ -220,8 +196,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                             ),
                                             children: <TextSpan>[
                                               TextSpan(
-                                                text:
-                                                    "${widget.parking.numSingle}",
+                                                text: widget.parking.numSingle,
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.sp,
@@ -243,8 +218,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                             ),
                                             children: <TextSpan>[
                                               TextSpan(
-                                                text:
-                                                    "${widget.parking.numCouple}",
+                                                text: widget.parking.numCouple,
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.sp,
@@ -267,7 +241,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                             children: <TextSpan>[
                                               TextSpan(
                                                 text:
-                                                    "${widget.parking.numElectric}",
+                                                    widget.parking.numElectric,
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.sp,
@@ -283,7 +257,7 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                   height: 10.h,
                                 ),
                                 TextHeader(
-                                    text: "Vị trí trống:",
+                                    text: "Xe khả dụng:",
                                     fontSize: 24.sp,
                                     color: Colors.black),
                                 SizedBox(
@@ -306,8 +280,9 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                             ),
                                             children: <TextSpan>[
                                               TextSpan(
-                                                text:
-                                                    "${widget.parking.emptySingle}",
+                                                text: widget
+                                                    .parking.numFreeSingle
+                                                    .toString(),
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.sp,
@@ -329,8 +304,9 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                             ),
                                             children: <TextSpan>[
                                               TextSpan(
-                                                text:
-                                                    "${widget.parking.emptyCouple}",
+                                                text: widget
+                                                    .parking.numFreeCouple
+                                                    .toString(),
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.sp,
@@ -352,8 +328,9 @@ class _DetailParkingScreenState extends State<DetailParkingScreen> {
                                             ),
                                             children: <TextSpan>[
                                               TextSpan(
-                                                text:
-                                                    "${widget.parking.emptyElectric}",
+                                                text: widget
+                                                    .parking.numFreeElectric
+                                                    .toString(),
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20.sp,

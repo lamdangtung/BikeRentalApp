@@ -1,4 +1,4 @@
-part of 'payment_controller.dart';
+part of 'payment_bloc.dart';
 
 abstract class PaymentState extends Equatable {
   const PaymentState();
@@ -17,5 +17,5 @@ class PaymentFail extends PaymentState {}
 class PaymentError extends PaymentState {
   final String error;
 
-  PaymentError(this.error);
+  const PaymentError(this.error);
 }

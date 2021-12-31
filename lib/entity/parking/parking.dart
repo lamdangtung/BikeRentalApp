@@ -17,9 +17,9 @@ class Parking {
     required this.numSingle,
     required this.numCouple,
     required this.numElectric,
-    required this.emptySingle,
-    required this.emptyCouple,
-    required this.emptyElectric,
+    required this.numFreeSingle,
+    required this.numFreeCouple,
+    required this.numFreeElectric,
   });
 
   String id;
@@ -29,9 +29,9 @@ class Parking {
   String numSingle;
   String numCouple;
   String numElectric;
-  String emptySingle;
-  String emptyCouple;
-  String emptyElectric;
+  int numFreeSingle;
+  int numFreeCouple;
+  int numFreeElectric;
   static List<Parking> listParking = [];
 
   factory Parking.fromJson(Map<String, dynamic> json) => Parking(
@@ -42,9 +42,9 @@ class Parking {
         numSingle: json["num_single"],
         numCouple: json["num_couple"],
         numElectric: json["num_electric"],
-        emptySingle: json["empty_single"],
-        emptyCouple: json["empty_couple"],
-        emptyElectric: json["empty_electric"],
+        numFreeSingle: json["num_free_single"],
+        numFreeCouple: json["num_free_couple"],
+        numFreeElectric: json["num_free_electric"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -55,19 +55,18 @@ class Parking {
         "num_single": numSingle,
         "num_couple": numCouple,
         "num_electric": numElectric,
-        "empty_single": emptySingle,
-        "empty_couple": emptyCouple,
-        "empty_electric": emptyElectric,
+        "num_free_single": numFreeSingle,
+        "num_free_couple": numFreeCouple,
+        "num_free_electric": numFreeElectric,
       };
 
   static String getParkingName(String parkingId) {
     String parkingName = "";
-    listParking.forEach((element) {
+    for (var element in listParking) {
       if (element.id == parkingId) {
         parkingName = element.name;
       }
-      ;
-    });
+    }
     return parkingName;
   }
 }

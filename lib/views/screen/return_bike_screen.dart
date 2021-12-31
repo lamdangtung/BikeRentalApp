@@ -1,4 +1,4 @@
-import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
 import 'package:bike_rental/views/widgets/return_bike_parking_item.dart';

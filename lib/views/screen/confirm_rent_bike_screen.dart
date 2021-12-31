@@ -1,7 +1,9 @@
 import 'package:bike_rental/entity/bike/bike.dart';
-import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/entity/invoice/rental_invoice.dart';
+import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
+import 'package:bike_rental/utils/utils.dart';
 import 'package:bike_rental/views/screen/payment_screen.dart';
 import 'package:bike_rental/views/widgets/normal_button.dart';
 import 'package:bike_rental/views/widgets/text_header.dart';
@@ -215,7 +217,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                     children: <TextSpan>[
                                       TextSpan(
-                                        text: widget.bike.deposite,
+                                        text: widget.bike.deposite + " VND",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 26.sp,
@@ -239,7 +241,7 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                                     ),
                                   ),
                                   Text(
-                                    "< 10 phút: Miễn phí\n30 phút đầu: 15.000 VND\n15 phút tiếp ( lũy tiến): ${widget.bike.rentalPrice}.000 VND",
+                                    "< 10 phút: Miễn phí\n30 phút đầu: 15 VND\n15 phút tiếp ( lũy tiến): ${widget.bike.rentalPrice} VND",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 26.sp,
@@ -259,10 +261,16 @@ class _ConfirmRentBikeScreenState extends State<ConfirmRentBikeScreen> {
                       child: NormalButton(
                         text: "Thuê xe",
                         onTap: () {
+                          RentalInvoice rentalInvoice = RentalInvoice(
+                              totalPrice: int.parse(widget.bike.deposite),
+                              bikeId: int.parse(widget.bike.id),
+                              createdAt: Utils.getTimeNow());
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const PaymentScreen()));
+                                  builder: (context) => PaymentScreen(
+                                        rentalInvoice: rentalInvoice,
+                                      )));
                         },
                         color: Colors.green,
                         fontSize: 30.sp,

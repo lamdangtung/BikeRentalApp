@@ -1,7 +1,8 @@
+import 'package:bike_rental/entity/invoice/rental_invoice.dart';
 import 'package:bike_rental/entity/payment/credit_card.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
-import 'package:bike_rental/views/handler/payment/payment_controller.dart';
+import 'package:bike_rental/views/handler/payment/payment_bloc.dart';
 import 'package:bike_rental/views/screen/result_screen.dart';
 import 'package:bike_rental/views/widgets/normal_button.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key? key}) : super(key: key);
+  final RentalInvoice rentalInvoice;
+  const PaymentScreen({Key? key, required this.rentalInvoice})
+      : super(key: key);
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -297,7 +300,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       .add(PayOrderEvent(
                                     creditCard: card,
                                     contents: "rent bike",
-                                    amount: 100,
+                                    amount: widget.rentalInvoice.totalPrice,
+                                    rentalInvoice: widget.rentalInvoice,
                                   ));
                                 }
                               },
@@ -314,5 +318,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         );
       },
     );
+
+    void confirmPayment() {}
   }
 }

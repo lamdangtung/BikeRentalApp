@@ -1,4 +1,4 @@
-import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/service/home_service.dart';
 
 class HomeRepository implements HomeService {

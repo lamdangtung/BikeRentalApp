@@ -1,5 +1,4 @@
-import 'package:bike_rental/entity/parking.dart';
-import 'package:bike_rental/views/screen/payment_screen.dart';
+import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/views/widgets/normal_button.dart';
 import 'package:bike_rental/views/widgets/text_header.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +80,7 @@ class _ReturnParkingItemState extends State<ReturnParkingItem> {
                               ),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: "${widget.parking.emptySingle}",
+                                  text: widget.parking.numSingle,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20.sp,
@@ -103,7 +102,7 @@ class _ReturnParkingItemState extends State<ReturnParkingItem> {
                               ),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: "${widget.parking.emptyCouple}",
+                                  text: widget.parking.numCouple,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20.sp,
@@ -125,7 +124,7 @@ class _ReturnParkingItemState extends State<ReturnParkingItem> {
                               ),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: "${widget.parking.emptyElectric}",
+                                  text: widget.parking.numElectric,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20.sp,
@@ -143,10 +142,10 @@ class _ReturnParkingItemState extends State<ReturnParkingItem> {
                       height: 35.h,
                       text: "Xác nhận trả xe",
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PaymentScreen()));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => PaymentScreen()));
                       },
                       fontSize: 18.sp,
                       color: Colors.green,

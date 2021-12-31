@@ -2,6 +2,9 @@ class API {
   static final String baseUrl = "http://10.0.2.2:80/bike_rental/api/";
   static final String parkingRoute = "parking/";
   static final String bikeRoute = "bike/";
+  static final String rentalInvoiceRoute = "rental_invoice/";
+  static final String paymentTransactionRoute = "payment_transaction/";
+
   static final String URL_PAY =
       "https://ecopark-system-api.herokuapp.com/api/card/processTransaction";
   static final String appCode = "DJJIeH7fxjg=";

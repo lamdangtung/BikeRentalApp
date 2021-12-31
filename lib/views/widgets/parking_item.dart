@@ -1,4 +1,4 @@
-import 'package:bike_rental/entity/parking.dart';
+import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,7 +75,7 @@ class _ParkingItemState extends State<ParkingItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: "${widget.parking.numSingle}",
+                                text: widget.parking.numSingle,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20.sp,
@@ -94,7 +94,7 @@ class _ParkingItemState extends State<ParkingItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: "${widget.parking.numCouple}",
+                                text: widget.parking.numCouple,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20.sp,
@@ -113,7 +113,7 @@ class _ParkingItemState extends State<ParkingItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: "${widget.parking.numElectric}",
+                                text: widget.parking.numElectric,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20.sp,
