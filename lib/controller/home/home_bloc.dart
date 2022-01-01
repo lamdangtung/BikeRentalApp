@@ -10,13 +10,14 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository homeRepository;
-
   HomeBloc(this.homeRepository) : super(HomeInitial());
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if (event is GetAllParkingEvent) {
       yield* _mapGetAllParkingEventToState(event);
+    } else if (event is GetRentBikeEvent) {
+      yield* _mapGetRentBikeEventToState(event);
     }
   }
 
@@ -32,6 +33,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     } catch (e) {
       yield ParkingErrorState(error: e.toString());
+    }
+  }
+
+  Stream<HomeState> _mapGetRentBikeEventToState(GetRentBikeEvent event) async* {
+    yield RentBikeLoading();
+    try {
+      final res = await homeRepository.getRentBike(event.invoiceId);
+      if (res != null) {
+        yield RentBikeLoaded(res);
+      } else {
+        yield RentBikeFail();
+      }
+    } catch (e) {
+      yield RentBikeError(error: e.toString());
     }
   }
 }

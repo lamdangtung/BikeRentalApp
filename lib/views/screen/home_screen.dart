@@ -1,8 +1,10 @@
+import 'package:bike_rental/controller/bloc.dart';
+import 'package:bike_rental/entity/bike/bike.dart';
+import 'package:bike_rental/entity/invoice/rental_invoice.dart';
 import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
 import 'package:bike_rental/utils/utils.dart';
-import 'package:bike_rental/views/handler/home/home_bloc.dart';
 import 'package:bike_rental/views/screen/detail_parking_screen.dart';
 import 'package:bike_rental/views/screen/rent_bike_screen.dart';
 import 'package:bike_rental/views/widgets/parking_item.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,7 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchTextEditingController =
       TextEditingController();
   List<Parking> parkingList = [];
-
+  late Bike rentBike;
+  late RentalInvoice rentalInvoice;
   @override
   void initState() {
     super.initState();
@@ -36,13 +40,30 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state is ParkingLoadingState) {
-          // print("ParkingLoadingState");
+          print("ParkingLoadingState");
         } else if (state is ParkingLoadedState) {
-          // print("ParkingLoadedState");
+          print("ParkingLoadedState");
           parkingList = state.listParking;
           Parking.listParking = parkingList;
         } else if (state is ParkingFailState) {
-          // print("ParkingErrorState");
+          print("ParkingErrorState");
+        } else if (state is RentBikeLoading) {
+          print("RentBikeLoading");
+        } else if (state is RentBikeLoaded) {
+          print("RentBikeLoaded");
+          rentBike = state.res["rent_bike"];
+          rentalInvoice = state.res["rental_invoice"];
+          if (rentBike != null && rentalInvoice != null) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => RentBikeScreen(
+                          rentBike: rentBike,
+                          rentalInvoice: rentalInvoice,
+                        )));
+          }
+        } else if (state is RentBikeFail) {
+          print("RentBikeFail");
         }
       },
       builder: (context, state) {
@@ -109,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () async {
                         SharedPreferences sharedPreferences =
@@ -117,11 +138,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         int? invoiceId =
                             sharedPreferences.getInt(Utils.invoiceId);
                         if (invoiceId != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      RentBikeScreen(invoiceId: invoiceId)));
+                          BlocProvider.of<HomeBloc>(context)
+                              .add(GetRentBikeEvent(invoiceId));
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "No Rent Bike",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.00);
                         }
                       },
                       child: Padding(

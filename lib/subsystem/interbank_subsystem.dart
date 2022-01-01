@@ -11,9 +11,23 @@ class InterbankSubsystem implements InterbankInterface {
   Future<PaymentTransaction?> payOrder(
       {required CreditCard card,
       required int amount,
-      required String contents}) async {
-    PaymentTransaction? paymentTransaction = await _interBankSubSystemController
-        .payOrder(card: card, amount: amount, contents: contents);
+      required String contents,
+      required String command}) async {
+    PaymentTransaction? paymentTransaction =
+        await _interBankSubSystemController.payOrder(
+            card: card, amount: amount, contents: contents, commmand: command);
+    return paymentTransaction;
+  }
+
+  @override
+  Future<PaymentTransaction?> refund(
+      {required CreditCard card,
+      required int amount,
+      required String contents,
+      required String command}) async {
+    PaymentTransaction? paymentTransaction =
+        await _interBankSubSystemController.refund(
+            card: card, amount: amount, contents: contents, commmand: command);
     return paymentTransaction;
   }
 }

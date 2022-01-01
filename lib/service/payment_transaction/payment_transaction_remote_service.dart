@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:bike_rental/entity/invoice/rental_invoice.dart';
 import 'package:bike_rental/entity/payment/payment_transaction.dart';
-import 'package:bike_rental/service/payment_transaction_service.dart';
+import 'package:bike_rental/service/payment_transaction/payment_transaction_service.dart';
 import 'package:bike_rental/utils/api.dart';
 import 'package:http/http.dart' as http;
 
@@ -27,6 +27,7 @@ class PaymentTransactionRemoteService implements PaymentTransactionService {
           headers: {"Content-Type": "application/json"},
           body: jsonEncode(data));
       if (res.statusCode == HttpStatus.ok) {
+        print(res.body.toString());
         final body = jsonDecode(res.body);
         if (body["message"] == "Payment Transaction Created") {
           return true;

@@ -7,3 +7,8 @@ abstract class HomeEvent extends Equatable {
 }
 
 class GetAllParkingEvent extends HomeEvent {}
+
+class GetRentBikeEvent extends HomeEvent {
+  final int invoiceId;
+  const GetRentBikeEvent(this.invoiceId);
+}

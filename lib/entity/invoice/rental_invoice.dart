@@ -3,7 +3,7 @@ class RentalInvoice {
   int totalPrice;
   int bikeId;
   String createdAt;
-
+  int? parkingId;
   RentalInvoice(
       {this.id,
       required this.totalPrice,
@@ -14,6 +14,7 @@ class RentalInvoice {
         "totalPrice": totalPrice,
         "bikeId": bikeId,
         "createdAt": createdAt,
+        "parkingId": parkingId,
       };
 
   factory RentalInvoice.fromJson(Map<String, dynamic> json) => RentalInvoice(
@@ -22,4 +23,9 @@ class RentalInvoice {
         bikeId: int.parse(json["bikeId"]),
         createdAt: json["createdAt"].toString(),
       );
+
+  @override
+  String toString() {
+    return 'RentalInvoice{id: $id, totalPrice: $totalPrice, bikeId: $bikeId, createdAt: $createdAt}';
+  }
 }

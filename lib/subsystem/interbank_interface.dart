@@ -2,8 +2,17 @@ import 'package:bike_rental/entity/payment/credit_card.dart';
 import 'package:bike_rental/entity/payment/payment_transaction.dart';
 
 abstract class InterbankInterface {
-  Future<PaymentTransaction?> payOrder(
-      {required CreditCard card,
-      required int amount,
-      required String contents});
+  Future<PaymentTransaction?> payOrder({
+    required CreditCard card,
+    required int amount,
+    required String contents,
+    required String command,
+  });
+
+  Future<PaymentTransaction?> refund({
+    required CreditCard card,
+    required int amount,
+    required String contents,
+    required String command,
+  });
 }

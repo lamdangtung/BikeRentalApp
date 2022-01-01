@@ -20,5 +20,19 @@ class ParkingFailState extends HomeState {}
 
 class ParkingErrorState extends HomeState {
   final String error;
-  ParkingErrorState({required this.error});
+  const ParkingErrorState({required this.error});
+}
+
+class RentBikeLoading extends HomeState {}
+
+class RentBikeLoaded extends HomeState {
+  Map<String, dynamic> res;
+  RentBikeLoaded(this.res);
+}
+
+class RentBikeFail extends HomeState {}
+
+class RentBikeError extends HomeState {
+  final String error;
+  const RentBikeError({required this.error});
 }

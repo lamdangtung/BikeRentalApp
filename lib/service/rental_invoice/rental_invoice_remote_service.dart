@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bike_rental/entity/invoice/rental_invoice.dart';
-import 'package:bike_rental/service/rental_invoice_service.dart';
+import 'package:bike_rental/service/rental_invoice/rental_invoice_service.dart';
 import 'package:bike_rental/utils/api.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,10 +1,10 @@
 import 'package:bike_rental/entity/invoice/rental_invoice.dart';
 import 'package:bike_rental/entity/payment/credit_card.dart';
 import 'package:bike_rental/entity/payment/payment_transaction.dart';
-import 'package:bike_rental/service/payment_transaction_remote_service.dart';
-import 'package:bike_rental/service/payment_transaction_service.dart';
-import 'package:bike_rental/service/rental_invoice_remote_service.dart';
-import 'package:bike_rental/service/rental_invoice_service.dart';
+import 'package:bike_rental/service/payment_transaction/payment_transaction_remote_service.dart';
+import 'package:bike_rental/service/payment_transaction/payment_transaction_service.dart';
+import 'package:bike_rental/service/rental_invoice/rental_invoice_remote_service.dart';
+import 'package:bike_rental/service/rental_invoice/rental_invoice_service.dart';
 import 'package:bike_rental/subsystem/interbank_interface.dart';
 import 'package:bike_rental/subsystem/interbank_subsystem.dart';
 
@@ -24,12 +24,10 @@ class PaymentRepository
   Future<PaymentTransaction?> payOrder(
       {required CreditCard card,
       required int amount,
-      required String contents}) async {
+      required String contents,
+      required String command}) async {
     return await interbankSubsystem.payOrder(
-      amount: amount,
-      card: card,
-      contents: contents,
-    );
+        amount: amount, card: card, contents: contents, command: command);
   }
 
   @override
@@ -45,5 +43,15 @@ class PaymentRepository
       required RentalInvoice rentalInvoice}) async {
     return await paymentTransactionService.createPaymentTransaction(
         paymentTransaction: paymentTransaction, rentalInvoice: rentalInvoice);
+  }
+
+  @override
+  Future<PaymentTransaction?> refund(
+      {required CreditCard card,
+      required int amount,
+      required String contents,
+      required String command}) async {
+    return await interbankSubsystem.refund(
+        amount: amount, card: card, contents: contents, command: command);
   }
 }

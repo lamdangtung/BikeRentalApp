@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:bike_rental/entity/bike/bike.dart';
 import 'package:bike_rental/entity/invoice/rental_invoice.dart';
-import 'package:bike_rental/service/rent_bike_service.dart';
+import 'package:bike_rental/service/rent_bike/rent_bike_service.dart';
 import 'package:bike_rental/utils/api.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,7 +11,7 @@ class RentBikeRemoteService implements RentBikeService {
   @override
   Future<Map<String, dynamic>?> getRentBike(int invoiceId) async {
     final String url =
-        API.baseUrl + API.bikeRoute + "rent_bike.php?invoiceId=${invoiceId}";
+        API.baseUrl + API.bikeRoute + "rent_bike.php?invoiceId=$invoiceId";
     final res = await http.get(
       Uri.parse(url),
     );

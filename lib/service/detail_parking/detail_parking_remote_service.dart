@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bike_rental/entity/bike/bike.dart';
-import 'package:bike_rental/service/detail_parking_service.dart';
 import 'package:bike_rental/utils/api.dart';
 import 'package:http/http.dart' as http;
+
+import 'detail_parking_service.dart';
 
 class DetailParkingRemoteService implements DetailParkingService {
   @override

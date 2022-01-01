@@ -1,14 +1,19 @@
 import 'package:bike_rental/entity/parking/parking.dart';
-import 'package:bike_rental/service/home_service.dart';
+import 'package:bike_rental/service/service.dart';
 
-class HomeRepository implements HomeService {
-  final HomeService homeService;
-
-  HomeRepository({required this.homeService});
+class HomeRepository implements HomeService, RentBikeService {
+  final HomeService homeRemoteService = HomeRemoteService();
+  final RentBikeService rentBikeRemoteService = RentBikeRemoteService();
+  HomeRepository();
 
   @override
   Future<List<Parking>?> getAllParking() async {
-    final res = await homeService.getAllParking();
+    final res = await homeRemoteService.getAllParking();
     return res;
+  }
+
+  @override
+  Future<Map<String, dynamic>?> getRentBike(int invoiceId) async {
+    return await rentBikeRemoteService.getRentBike(invoiceId);
   }
 }

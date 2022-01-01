@@ -1,8 +1,8 @@
+import 'package:bike_rental/controller/detail_parking/detail_parking_bloc.dart';
 import 'package:bike_rental/entity/bike/bike.dart';
 import 'package:bike_rental/entity/parking/parking.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
-import 'package:bike_rental/views/handler/detail_parking/detail_parking_bloc.dart';
 import 'package:bike_rental/views/screen/confirm_rent_bike_screen.dart';
 import 'package:bike_rental/views/widgets/bike_item.dart';
 import 'package:bike_rental/views/widgets/text_header.dart';

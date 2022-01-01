@@ -1,8 +1,9 @@
+import 'package:bike_rental/controller/payment/payment_bloc.dart';
 import 'package:bike_rental/entity/invoice/rental_invoice.dart';
 import 'package:bike_rental/entity/payment/credit_card.dart';
+import 'package:bike_rental/utils/api.dart';
 import 'package:bike_rental/utils/colors.dart';
 import 'package:bike_rental/utils/images.dart';
-import 'package:bike_rental/views/handler/payment/payment_bloc.dart';
 import 'package:bike_rental/views/screen/result_screen.dart';
 import 'package:bike_rental/views/widgets/normal_button.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PaymentScreen extends StatefulWidget {
+  final int? refundAmount;
   final RentalInvoice rentalInvoice;
-  const PaymentScreen({Key? key, required this.rentalInvoice})
+  const PaymentScreen(
+      {Key? key, required this.rentalInvoice, this.refundAmount})
       : super(key: key);
 
   @override
@@ -36,6 +39,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   void initState() {
     super.initState();
+    print(widget.refundAmount);
+    print(widget.rentalInvoice.toString());
     cardNumberTextEditingController.text = "kscq1_group14_2021";
     ownerTextEditingController.text = "Group 14";
     secretNumberTextEditingController.text = "786";
@@ -46,21 +51,30 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentBloc, PaymentState>(
       listener: (context, state) {
-        if (state is PaymentLoading) {
-        } else if (state is PaymentSuccess) {
+        if (state is PayLoading) {
+          print("PayLoading");
+        } else if (state is PaySuccess) {
+          print("PaySuccess");
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => const ResultScreen(
                         message: "Thành công",
                       )));
-        } else if (state is PaymentFail) {
+        } else if (state is PayFail) {
+          print("PayFail");
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => const ResultScreen(
                         message: "Thất bại",
                       )));
+        } else if (state is RefundLoading) {
+          print("RefundLoading");
+        } else if (state is RefundSuccess) {
+          print("RefundSuccess");
+        } else if (state is RefundFail) {
+          print("RefundFail");
         }
       },
       builder: (context, state) {
@@ -296,13 +310,33 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         expiredDateTextEditingController.text,
                                     owner: ownerTextEditingController.text);
                                 if (card.checkCreditCardFormat()) {
-                                  BlocProvider.of<PaymentBloc>(context)
-                                      .add(PayOrderEvent(
-                                    creditCard: card,
-                                    contents: "rent bike",
-                                    amount: widget.rentalInvoice.totalPrice,
-                                    rentalInvoice: widget.rentalInvoice,
-                                  ));
+                                  if (widget.refundAmount != null) {
+                                    BlocProvider.of<PaymentBloc>(context)
+                                        .add(RefundEvent(
+                                      rentalInvoice: widget.rentalInvoice,
+                                      command: API.commandRefund,
+                                      contents: "refund",
+                                      amount: widget.refundAmount!,
+                                      creditCard: card,
+                                    ));
+                                    BlocProvider.of<PaymentBloc>(context)
+                                        .add(PayOrderEvent(
+                                      command: API.commandPay,
+                                      creditCard: card,
+                                      contents: "return bike",
+                                      amount: widget.rentalInvoice.totalPrice,
+                                      rentalInvoice: widget.rentalInvoice,
+                                    ));
+                                  } else {
+                                    BlocProvider.of<PaymentBloc>(context)
+                                        .add(PayOrderEvent(
+                                      command: API.commandPay,
+                                      creditCard: card,
+                                      contents: "rent bike",
+                                      amount: widget.rentalInvoice.totalPrice,
+                                      rentalInvoice: widget.rentalInvoice,
+                                    ));
+                                  }
                                 }
                               },
                               fontSize: 30.sp,
@@ -318,7 +352,5 @@ class _PaymentScreenState extends State<PaymentScreen> {
         );
       },
     );
-
-    void confirmPayment() {}
   }
 }

@@ -80,7 +80,9 @@ class _ReturnParkingItemState extends State<ReturnParkingItem> {
                               ),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: widget.parking.numSingle,
+                                  text: (int.parse(widget.parking.numSingle) -
+                                          widget.parking.numFreeSingle)
+                                      .toString(),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20.sp,
@@ -102,7 +104,9 @@ class _ReturnParkingItemState extends State<ReturnParkingItem> {
                               ),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: widget.parking.numCouple,
+                                  text: (int.parse(widget.parking.numCouple) -
+                                          widget.parking.numFreeCouple)
+                                      .toString(),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20.sp,
@@ -124,7 +128,9 @@ class _ReturnParkingItemState extends State<ReturnParkingItem> {
                               ),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: widget.parking.numElectric,
+                                  text: (int.parse(widget.parking.numElectric) -
+                                          widget.parking.numFreeElectric)
+                                      .toString(),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20.sp,
@@ -142,10 +148,15 @@ class _ReturnParkingItemState extends State<ReturnParkingItem> {
                       height: 35.h,
                       text: "Xác nhận trả xe",
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => PaymentScreen()));
+                        if ((int.parse(widget.parking.numElectric) -
+                                    widget.parking.numFreeElectric) >=
+                                1 ||
+                            (int.parse(widget.parking.numCouple) -
+                                        widget.parking.numFreeCouple) >=
+                                    1 &&
+                                (int.parse(widget.parking.numSingle) -
+                                        widget.parking.numFreeSingle) >=
+                                    1) widget.onTap();
                       },
                       fontSize: 18.sp,
                       color: Colors.green,
