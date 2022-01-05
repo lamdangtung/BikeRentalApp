@@ -74,9 +74,6 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
               await paymentRepository.createPaymentTransaction(
                   paymentTransaction: res, rentalInvoice: rentalInvoice);
           if (createdPaymentTransaction!) {
-            // SharedPreferences sharedPreferences =
-            //     await SharedPreferences.getInstance();
-            // await sharedPreferences.setInt(Utils.invoiceId, rentalInvoice.id!);
             yield RefundSuccess();
           }
         }

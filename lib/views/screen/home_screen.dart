@@ -178,7 +178,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (_, i) {
                       return ParkingItem(
                           onTap: () {
-                            // Navigator.pushNamed(context, "/detail_parking");
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

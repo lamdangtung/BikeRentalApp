@@ -16,6 +16,8 @@ class HomeRemoteService implements HomeService {
         Uri.parse(url),
       );
       if (res.statusCode == HttpStatus.ok) {
+        print(res.body.toString());
+
         Iterable data = jsonDecode(res.body)["data"];
         final listParking =
             List<Parking>.from(data.map((e) => Parking.fromJson(e)));

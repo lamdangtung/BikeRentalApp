@@ -63,10 +63,6 @@ class Bike {
     }
   }
 
-  bool checkAvailabilityBarcode() {
-    return true;
-  }
-
   int caculateRentalAmount(int time) {
     if (time <= 10) {
       return 0;
